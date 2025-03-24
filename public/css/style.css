@@ -1,0 +1,63 @@
+/* Global Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Landing Page */
+.landing-page {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.landing-page .navbar {
+  background-color: rgba(33, 37, 41, 0.95) !important;
+}
+
+/* Dashboard */
+.repo-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.repo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.star-count {
+  color: #ffc107;
+}
+
+/* Avatar */
+.avatar-img {
+  object-fit: cover;
+}
+
+/* Stats Cards */
+.stats-card {
+  border-radius: 10px;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.stats-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid #eee;
+}
+
+/* Buttons */
+.btn-github {
+  background-color: #24292e;
+  color: white;
+}
+
+.btn-github:hover {
+  background-color: #1b1f23;
+  color: white;
+} 
