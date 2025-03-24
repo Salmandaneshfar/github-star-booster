@@ -1,0 +1,192 @@
+<div class="container py-4">
+  <% if (user.bio || user.followers) { %>
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <img src="<%= user.avatar %>" alt="<%= user.username %>" class="rounded-circle me-3" width="80" height="80">
+            <div>
+              <h4 class="mb-1"><%= user.displayName || user.username %></h4>
+              <% if (user.bio) { %>
+                <p class="text-muted mb-2"><%= user.bio %></p>
+              <% } %>
+              <div>
+                <% if (user.followers) { %>
+                  <span class="badge bg-light text-dark me-2">
+                    <i class="fas fa-users me-1"></i> <%= user.followers %> followers
+                  </span>
+                <% } %>
+                <% if (user.following) { %>
+                  <span class="badge bg-light text-dark me-2">
+                    <i class="fas fa-user-friends me-1"></i> <%= user.following %> following
+                  </span>
+                <% } %>
+                <% if (user.publicRepos) { %>
+                  <span class="badge bg-light text-dark">
+                    <i class="fas fa-code-branch me-1"></i> <%= user.publicRepos %> repositories
+                  </span>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% } %>
+
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 shadow-sm stats-card">
+        <div class="card-body p-4 text-center">
+          <div class="d-flex justify-content-center mb-3">
+            <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center" style="width: 80px; height: 80px;">
+              <i class="fas fa-star fa-2x"></i>
+            </div>
+          </div>
+          <h2 class="fw-bold"><%= totalStars %></h2>
+          <p class="text-muted mb-0">Total Stars</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 shadow-sm stats-card">
+        <div class="card-body p-4 text-center">
+          <div class="d-flex justify-content-center mb-3">
+            <div class="rounded-circle bg-success text-white d-flex justify-content-center align-items-center" style="width: 80px; height: 80px;">
+              <i class="fas fa-code-branch fa-2x"></i>
+            </div>
+          </div>
+          <h2 class="fw-bold"><%= user.repositories.length %></h2>
+          <p class="text-muted mb-0">Repositories</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 shadow-sm stats-card">
+        <div class="card-body p-4 text-center">
+          <div class="d-flex justify-content-center mb-3">
+            <div class="rounded-circle bg-info text-white d-flex justify-content-center align-items-center" style="width: 80px; height: 80px;">
+              <i class="fas fa-exchange-alt fa-2x"></i>
+            </div>
+          </div>
+          <h2 class="fw-bold">15</h2>
+          <p class="text-muted mb-0">Stars Exchanged</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-12 mb-4">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white py-3">
+          <h5 class="card-title mb-0 fw-bold">Your Repositories</h5>
+        </div>
+        <div class="card-body">
+          <% if (user.repositories && user.repositories.length > 0) { %>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Repository</th>
+                    <th>Description</th>
+                    <th class="text-center">Stars</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% user.repositories.forEach(repo => { %>
+                  <tr>
+                    <td>
+                      <a href="<%= repo.url %>" target="_blank" class="fw-bold text-decoration-none">
+                        <%= repo.name %>
+                      </a>
+                    </td>
+                    <td><%= repo.description %></td>
+                    <td class="text-center">
+                      <span class="badge bg-warning text-dark">
+                        <i class="fas fa-star me-1"></i> <%= repo.stars %>
+                      </span>
+                    </td>
+                    <td>
+                      <button class="btn btn-sm btn-primary">
+                        <i class="fas fa-rocket me-1"></i> Boost
+                      </button>
+                    </td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            </div>
+          <% } else { %>
+            <div class="alert alert-info">
+              <i class="fas fa-info-circle me-2"></i> No repositories found.
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-12 mb-4">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0 fw-bold">Star Exchange Network</h5>
+          <button class="btn btn-primary btn-sm">
+            <i class="fas fa-plus me-1"></i> Add Repository
+          </button>
+        </div>
+        <div class="card-body">
+          <div class="alert alert-info">
+            <i class="fas fa-info-circle me-2"></i> This is a demo. In the full application, you would see repositories from other users that you can star to earn points.
+          </div>
+          
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="card repo-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">awesome-project</h5>
+                  <p class="card-text text-muted">A collection of awesome resources for web development</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <span class="badge bg-light text-dark">
+                        <i class="fas fa-star text-warning me-1"></i> 128
+                      </span>
+                    </div>
+                    <button class="btn btn-sm btn-outline-primary">
+                      <i class="fas fa-star me-1"></i> Star
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="card repo-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">react-boilerplate</h5>
+                  <p class="card-text text-muted">A React.js starter template with best practices</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <span class="badge bg-light text-dark">
+                        <i class="fas fa-star text-warning me-1"></i> 75
+                      </span>
+                    </div>
+                    <button class="btn btn-sm btn-outline-primary">
+                      <i class="fas fa-star me-1"></i> Star
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
